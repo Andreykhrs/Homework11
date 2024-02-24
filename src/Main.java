@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         task1();
@@ -7,12 +9,8 @@ public class Main {
     }
 
     public static void checkLeapYear(int yearCheck) {
-
-        int everyFourYears = yearCheck % 4;
-        int  everyHundredthYear = yearCheck % 100;
-        int everyFourHundredthYear = yearCheck% 400;
-        if (yearCheck>1584 && everyHundredthYear != 0 && everyFourYears ==0 || everyFourHundredthYear ==0 ) {
-            System.out.println(yearCheck + " год является Високосным");
+        if (yearCheck % 100 != 0 && yearCheck % 4 ==0 || yearCheck% 400 ==0) {
+                System.out.println(yearCheck + " год является Високосным");
         } else {
             System.out.println(yearCheck + " год не является Високосным");
         }
@@ -21,22 +19,24 @@ public class Main {
 
     public static void task1() {
         System.out.println("Задача №1");
-        int year = 2017;
+        int year = 2023;
         checkLeapYear(year);
     }
 
     public static void checkClientDevice(int clientDeviceOS, int deviceYear) {
-        if (clientDeviceOS == 0 && deviceYear >= 2015) {
+
+        int currentYear = LocalDate.now().getYear();
+
+        if (clientDeviceOS == 0 && deviceYear == currentYear) {
             System.out.println("Установите версию приложения для iOS по ссылке.");
-        } else if (clientDeviceOS == 0 && deviceYear < 2015) {
+        } else if (clientDeviceOS == 0 && deviceYear < currentYear) {
             System.out.println("Установите облегченную версию приложения для iOS по ссылке.");
-        }
-        if (clientDeviceOS == 1 && deviceYear >= 2015) {
+        } else if (clientDeviceOS == 1 && deviceYear == currentYear) {
             System.out.println("Установите версию приложения для Android по ссылке.");
-        } else if (clientDeviceOS == 1 && deviceYear < 2015) {
+        } else if (clientDeviceOS == 1 && deviceYear < currentYear) {
             System.out.println("Установите облегченную версию приложения для Android по ссылке.");
         }
-        if (clientDeviceOS != 1 && clientDeviceOS!=0) {
+        else {
             System.out.println("Введите год выпуска вашего телефона и цифру 0, если у вас iOS. Если у вас Android, введите цифру 1.");
         }
 
@@ -49,7 +49,7 @@ public class Main {
 
         System.out.println("Задача №2");
         int clientOS = 1; // (0 — iOS, 1 — Android)
-        int clientDeviceYear = 2015;
+        int clientDeviceYear = 2023;
         checkClientDevice(clientOS,clientDeviceYear);
 
     }
