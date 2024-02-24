@@ -54,11 +54,12 @@ public class Main {
 
     }
 
-    public static void checkNumberOfDays(int distanceDel) {
+    public static int checkNumberOfDays(int distanceDel) {
         int deliveryDay = 1;
-        if (distanceDel > 100) {
-            System.out.println("Нет доставки.");
-            return;
+        if (distanceDel > 100 || distanceDel < 0) {
+
+            return -1;
+
         }
         if (distanceDel > 20) {
             deliveryDay++;
@@ -66,19 +67,28 @@ public class Main {
         if (distanceDel > 60) {
             deliveryDay++;
         }
-        System.out.println("Потребуется дней: "+ deliveryDay);
 
 
+
+        return deliveryDay;
     }
 
 
 
     public static void task3() {
         System.out.println("Задача №3");
-        int deliveryDistance = 45;
+        int deliveryDistance = 55;
+
+
         checkNumberOfDays(deliveryDistance);
+        if (checkNumberOfDays(deliveryDistance) < 0) {
+            System.out.println("Нет доставки.");
+        }
+            else {
+                System.out.println("Потребуется дней: "+ checkNumberOfDays(deliveryDistance));
+            }
+        }
 
     }
 
 
-}
